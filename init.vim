@@ -42,7 +42,6 @@ source $XDG_CONFIG_HOME/nvim/_machine_specific.vim
 " ===
 " === System
 " ===
-"set clipboard=unnamedplus
 let &t_ut=''
 set autochdir
 
@@ -117,49 +116,49 @@ tnoremap <C-O> <C-\><C-N><C-O>
 " ===
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
-noremap ; :
+"noremap ; :
 
 " Save & quit
-noremap Q :q<CR>
+"noremap Q :q<CR>
 " noremap <C-q> :qa<CR>
 noremap S :w<CR>
 
 " Open the vimrc file anytime
 noremap <LEADER>rc :e $HOME/.config/nvim/init.vim<CR>
-noremap <LEADER>rv :e .nvimrc<CR>
+"noremap <LEADER>rv :e .nvimrc<CR>
 
 " Undo operations
-noremap l u
+"noremap l u
 
 " Insert Key
-noremap k i
-noremap K I
+"noremap k i
+"noremap K I
 
 " make Y to copy till the end of the line
-nnoremap Y y$
+"nnoremap Y y$
 
 " Copy to system clipboard
-vnoremap Y "+y
+"vnoremap <LEADER>Y "*y
 
+set clipboard+=unnamedplus
 " Indentation
-nnoremap < <<
-nnoremap > >>
+"nnoremap < <<
+"nnoremap > >>
 
 " Delete find pair
-nnoremap dy d%
-
+"nnoremap dy d%
 " Search
-noremap <LEADER><CR> :nohlsearch<CR>
+"noremap <LEADER><CR> :nohlsearch<CR>
 
 " Adjacent duplicate words
-noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
+"noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
 
 " Space to Tab
-nnoremap <LEADER>tt :%s/    /\t/g
-vnoremap <LEADER>tt :s/    /\t/g
+"nnoremap <LEADER>tt :%s/    /\t/g
+"vnoremap <LEADER>tt :s/    /\t/g
 
 " Folding
-noremap <silent> <LEADER>o za
+"noremap <silent> <LEADER>o za
 
 " nnoremap <c-n> :tabe<CR>:-tabmove<CR>:term lazynpm<CR>
 
@@ -173,33 +172,33 @@ noremap <silent> <LEADER>o za
 " < n   i >
 "     e
 "     v
-noremap <silent> u k
-noremap <silent> n h
-noremap <silent> e j
-noremap <silent> i l
-noremap <silent> gu gk
-noremap <silent> ge gj
-noremap <silent> \v v$h
+"noremap <silent> u k
+"noremap <silent> n h
+"noremap <silent> e j
+"noremap <silent> i l
+"noremap <silent> gu gk
+"noremap <silent> ge gj
+"noremap <silent> \v v$h
 
 " U/E keys for 5 times u/e (faster navigation)
-noremap <silent> U 5k
-noremap <silent> E 5j
+"noremap <silent> U 5k
+"noremap <silent> E 5j
 
 " N key: go to the start of the line
-noremap <silent> N 0
+"noremap <silent> N 0
 " I key: go to the end of the line
-noremap <silent> I $
+"noremap <silent> I $
 
 " Faster in-line navigation
-noremap W 5w
-noremap B 5b
+"noremap W 5w
+"noremap B 5b
 
 " set h (same as n, cursor left) to 'end of word'
-noremap h e
+"noremap h e
 
 " Ctrl + U or E will move up/down the view port without moving the cursor
-noremap <C-U> 5<C-y>
-noremap <C-E> 5<C-e>
+"noremap <C-U> 5<C-y>
+"noremap <C-E> 5<C-e>
 
 
 
@@ -211,42 +210,42 @@ source $XDG_CONFIG_HOME/nvim/cursor.vim
 " ===
 " === Insert Mode Cursor Movement
 " ===
-inoremap <C-a> <ESC>A
+"inoremap <C-a> <ESC>A
 
 
 " ===
 " === Command Mode Cursor Movement
 " ===
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <M-b> <S-Left>
-cnoremap <M-w> <S-Right>
+"cnoremap <C-a> <Home>
+"cnoremap <C-e> <End>
+"cnoremap <C-p> <Up>
+"cnoremap <C-n> <Down>
+"cnoremap <C-b> <Left>
+"cnoremap <C-f> <Right>
+"cnoremap <M-b> <S-Left>
+"cnoremap <M-w> <S-Right>
 
 
 " ===
 " === Searching
 " ===
-noremap - N
-noremap = n
+"noremap - N
+"noremap = n
 
 
 " ===
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
-noremap <LEADER>w <C-w>w
-noremap <LEADER>u <C-w>k
-noremap <LEADER>e <C-w>j
-noremap <LEADER>n <C-w>h
-noremap <LEADER>i <C-w>l
-noremap qf <C-w>o
+"noremap <LEADER>w <C-w>w
+"noremap <LEADER>u <C-w>k
+"noremap <LEADER>e <C-w>j
+"noremap <LEADER>n <C-w>h
+"noremap <LEADER>i <C-w>l
+"noremap qf <C-w>o
 
 " Disable the default s key
-noremap s <nop>
+"noremap s <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 noremap su :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
@@ -255,10 +254,10 @@ noremap sn :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 noremap si :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
-noremap <up> :res +5<CR>
-noremap <down> :res -5<CR>
-noremap <left> :vertical resize-5<CR>
-noremap <right> :vertical resize+5<CR>
+noremap <up> :res +2<CR>
+noremap <down> :res -2<CR>
+noremap <left> :vertical resize-2<CR>
+noremap <right> :vertical resize+2<CR>
 
 " Place the two screens up and down
 noremap sh <C-w>t<C-w>K
@@ -266,8 +265,8 @@ noremap sh <C-w>t<C-w>K
 noremap sv <C-w>t<C-w>H
 
 " Rotate screens
-noremap srh <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
+"noremap srh <C-w>b<C-w>K
+"noremap srv <C-w>b<C-w>H
 
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
@@ -312,12 +311,12 @@ noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 noremap <LEADER>sc :set spell!<CR>
 
 " Press ` to change case (instead of ~)
-noremap ` ~
+"noremap ` ~
 
-noremap <C-c> zz
+"noremap <C-c> zz
 
 " Auto change directory to current dir
-autocmd BufEnter * silent! lcd %:p:h
+"autocmd BufEnter * silent! lcd %:p:h
 
 " Call figlet
 noremap tx :r !figlet 
@@ -415,8 +414,8 @@ Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'RRethy/vim-illuminate'
 
 " File navigation
-"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'kevinhwang91/rnvimr'
@@ -427,7 +426,7 @@ Plug 'pechorin/any-jump.vim'
 Plug 'liuchengxu/vista.vim'
 
 " Debugger
-" Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -453,8 +452,8 @@ Plug 'kdheepak/lazygit.nvim'
 " Plug 'lervag/vimtex'
 
 " CSharp
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] } " omnisharp-vim dependency
+"Plug 'OmniSharp/omnisharp-vim'
+"Plug 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] } " omnisharp-vim dependency
 
 " HTML, CSS, JavaScript, Typescript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
@@ -492,21 +491,22 @@ Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-p
 Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
 
 " Flutter
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'f-person/pubspec-assist-nvim', { 'for' : ['pubspec.yaml'] }
+"Plug 'dart-lang/dart-vim-plugin'
+"Plug 'f-person/pubspec-assist-nvim', { 'for' : ['pubspec.yaml'] }
 
 " Swift
-Plug 'keith/swift.vim'
-Plug 'arzg/vim-swift'
+"Plug 'keith/swift.vim'
+"Plug 'arzg/vim-swift'
 
 " Markdown
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] }
 Plug 'dkarter/bullets.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " Other filetypes
-" Plug 'jceb/vim-orgmode', {'for': ['vim-plug', 'org']}
+Plug 'jceb/vim-orgmode', {'for': ['vim-plug', 'org']}
 
 " Editor Enhancement
 "Plug 'Raimondi/delimitMate'
@@ -523,7 +523,7 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'Konfekt/FastFold'
 "Plug 'junegunn/vim-peekaboo'
 "Plug 'wellle/context.vim'
-Plug 'svermeulen/vim-subversive'
+"Plug 'svermeulen/vim-subversive'
 Plug 'theniceboy/argtextobj.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -553,7 +553,7 @@ Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 
 " Vim Applications
-Plug 'itchyny/calendar.vim'
+"Plug 'itchyny/calendar.vim'
 
 " Other visual enhancement
 Plug 'luochen1990/rainbow'
@@ -572,6 +572,7 @@ Plug 'lambdalisue/suda.vim' " do stuff like :sudowrite
 " Plug 'kana/vim-textobj-user'
 " Plug 'roxma/nvim-yarp'
 
+Plug 'chusiang/vim-sdcv'
 
 call plug#end()
 set re=0
@@ -637,6 +638,11 @@ nnoremap <LEADER>g= :GitGutterNextHunk<CR>
 " ===
 " === coc.nvim
 " ===
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
 let g:coc_global_extensions = [
 	\ 'coc-css',
 	\ 'coc-diagnostic',
@@ -650,7 +656,6 @@ let g:coc_global_extensions = [
 	\ 'coc-jest',
 	\ 'coc-json',
 	\ 'coc-lists',
-	\ 'coc-omnisharp',
 	\ 'coc-prettier',
 	\ 'coc-prisma',
 	\ 'coc-pyright',
@@ -666,8 +671,8 @@ let g:coc_global_extensions = [
 	\ 'coc-vetur',
 	\ 'coc-vimlsp',
 	\ 'coc-yaml',
-	\ 'coc-yank',
-	\ 'https://github.com/rodrigore/coc-tailwind-intellisense']
+	\ 'coc-go',
+	\ 'coc-yank']
 inoremap <silent><expr> <TAB>
 	\ pumvisible() ? "\<C-n>" :
 	\ <SID>check_back_space() ? "\<TAB>" :
@@ -725,9 +730,9 @@ endfunction
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>aw  <Plug>(coc-codeaction-selected)w
 " coctodolist
-" nnoremap <leader>tn :CocCommand todolist.create<CR>
-" nnoremap <leader>tl :CocList todolist<CR>
-" nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
+nnoremap <leader>tn :CocCommand todolist.create<CR>
+nnoremap <leader>tl :CocList todolist<CR>
+nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
 " coc-tasks
 noremap <silent> <leader>ts :CocList tasks<CR>
 " coc-snippets
@@ -752,17 +757,61 @@ let g:instant_markdown_autostart = 0
 let g:instant_markdown_autoscroll = 1
 
 
+" === 
+" === vim-markdown-preview 
+" === 
+let g:mkdp_auto_start = 0 
+let g:mkdp_auto_close = 1 
+let g:mkdp_refresh_slow = 0 
+let g:mkdp_command_for_global = 0 
+let g:mkdp_open_to_the_world = 0 
+let g:mkdp_open_ip = '' 
+let g:mkdp_browser = '' 
+let g:mkdp_echo_preview_url = 0 
+let g:mkdp_browserfunc = '' 
+let g:mkdp_preview_options = { 
+    \ 'mkit': {}, 
+    \ 'katex': {}, 
+    \ 'uml': {}, 
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false,
+    \ 'disable_filename': 0
+    \ }
+
+let g:mkdp_markdown_css = ''
+let g:mkdp_highlight_css = ''
+let g:mkdp_port = ''
+let g:mkdp_page_title = '「${name}」'
+
+let g:mkdp_filetypes = ['markdown']
+
+" normal/insert
+"<Plug>MarkdownPreview
+"<Plug>MarkdownPreviewStop
+"<Plug>MarkdownPreviewToggle
+
+" example
+"nmap <C-s> <Plug>MarkdownPreview
+"nmap <M-s> <Plug>MarkdownPreviewStop
+"nmap <C-p> <Plug>MarkdownPreviewToggle
+
+
 " ===
 " === vim-table-mode
 " ===
 noremap <LEADER>tm :TableModeToggle<CR>
-"let g:table_mode_disable_mappings = 1
-let g:table_mode_cell_text_object_i_map = 'k<Bar>'
+"let g:table_mode_disable_mappings = 1 
+let g:table_mode_cell_text_object_i_map = 'k<Bar>' 
 
 
-" ===
-" === FZF
-" ===
+" === 
+" === FZF 
+" === 
 set rtp+=/usr/local/opt/fzf
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 set rtp+=/home/david/.linuxbrew/opt/fzf
@@ -827,8 +876,8 @@ let g:Lf_UseCache = 0
 " ===
 " === CTRLP (Dependency for omnisharp)
 " ===
-let g:ctrlp_map = ''
-let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_map = ''
+"let g:ctrlp_cmd = 'CtrlP'
 
 
 " ===
@@ -998,26 +1047,26 @@ let maplocalleader=' '
 " === vim-calendar
 " ===
 "noremap \c :Calendar -position=here<CR>
-noremap \\ :Calendar -view=clock -position=here<CR>
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
-augroup calendar-mappings
-	autocmd!
-	" diamond cursor
-	autocmd FileType calendar nmap <buffer> u <Plug>(calendar_up)
-	autocmd FileType calendar nmap <buffer> n <Plug>(calendar_left)
-	autocmd FileType calendar nmap <buffer> e <Plug>(calendar_down)
-	autocmd FileType calendar nmap <buffer> i <Plug>(calendar_right)
-	autocmd FileType calendar nmap <buffer> <c-u> <Plug>(calendar_move_up)
-	autocmd FileType calendar nmap <buffer> <c-n> <Plug>(calendar_move_left)
-	autocmd FileType calendar nmap <buffer> <c-e> <Plug>(calendar_move_down)
-	autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_right)
-	autocmd FileType calendar nmap <buffer> k <Plug>(calendar_start_insert)
-	autocmd FileType calendar nmap <buffer> K <Plug>(calendar_start_insert_head)
-	" unmap <C-n>, <C-p> for other plugins
-	autocmd FileType calendar nunmap <buffer> <C-n>
-	autocmd FileType calendar nunmap <buffer> <C-p>
-augroup END
+"noremap \\ :Calendar -view=clock -position=here<CR>
+"let g:calendar_google_calendar = 1
+"let g:calendar_google_task = 1
+"augroup calendar-mappings
+"	autocmd!
+"	" diamond cursor
+"	autocmd FileType calendar nmap <buffer> u <Plug>(calendar_up)
+"	autocmd FileType calendar nmap <buffer> n <Plug>(calendar_left)
+"	autocmd FileType calendar nmap <buffer> e <Plug>(calendar_down)
+"	autocmd FileType calendar nmap <buffer> i <Plug>(calendar_right)
+"	autocmd FileType calendar nmap <buffer> <c-u> <Plug>(calendar_move_up)
+"	autocmd FileType calendar nmap <buffer> <c-n> <Plug>(calendar_move_left)
+"	autocmd FileType calendar nmap <buffer> <c-e> <Plug>(calendar_move_down)
+"	autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_right)
+"	autocmd FileType calendar nmap <buffer> k <Plug>(calendar_start_insert)
+"	autocmd FileType calendar nmap <buffer> K <Plug>(calendar_start_insert_head)
+"	" unmap <C-n>, <C-p> for other plugins
+"	autocmd FileType calendar nunmap <buffer> <C-n>
+"	autocmd FileType calendar nunmap <buffer> <C-p>
+"augroup END
 
 
 " ===
@@ -1055,21 +1104,21 @@ let g:go_doc_keywordprg_enabled = 0
 " ===
 " === OmniSharp
 " ===
-let g:OmniSharp_typeLookupInPreview = 1
-let g:omnicomplete_fetch_full_documentation = 1
+"let g:OmniSharp_typeLookupInPreview = 1
+"let g:omnicomplete_fetch_full_documentation = 1
 
-let g:OmniSharp_server_use_mono = 1
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_highlight_types = 2
-let g:OmniSharp_selector_ui = 'ctrlp'
+"let g:OmniSharp_server_use_mono = 1
+"let g:OmniSharp_server_stdio = 1
+"let g:OmniSharp_highlight_types = 2
+"let g:OmniSharp_selector_ui = 'ctrlp'
 
-autocmd Filetype cs nnoremap <buffer> gd :OmniSharpPreviewDefinition<CR>
-autocmd Filetype cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
-autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
-autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
-autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
+"autocmd Filetype cs nnoremap <buffer> gd :OmniSharpPreviewDefinition<CR>
+"autocmd Filetype cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
+"autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
+"autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
+"autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
 
-sign define OmniSharpCodeActions text=💡
+"sign define OmniSharpCodeActions text=💡
 
 let g:coc_sources_disable_map = { 'cs': ['cs', 'cs-1', 'cs-2', 'cs-3'] }
 
@@ -1252,8 +1301,8 @@ let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 " ===
 " === vim-subversive
 " ===
-nmap s <plug>(SubversiveSubstitute)
-nmap ss <plug>(SubversiveSubstituteLine)
+"nmap s <plug>(SubversiveSubstitute)
+"nmap ss <plug>(SubversiveSubstituteLine)
 
 
 " ===
@@ -1285,9 +1334,9 @@ let g:asyncrun_open = 6
 " ===
 " === dart-vim-plugin
 " ===
-let g:dart_style_guide = 2
-let g:dart_format_on_save = 1
-let g:dartfmt_options = ["-l 100"]
+"let g:dart_style_guide = 2
+"let g:dart_format_on_save = 1
+"let g:dartfmt_options = ["-l 100"]
 
 
 " ===
@@ -1310,7 +1359,7 @@ let g:move_key_modifier = 'C'
 " ===
 " === any-jump
 " ===
-nnoremap j :AnyJump<CR>
+nnoremap <LEADER>j :AnyJump<CR>
 let g:any_jump_window_width_ratio  = 0.8
 let g:any_jump_window_height_ratio = 0.9
 
@@ -1333,10 +1382,10 @@ let g:agit_no_default_mappings = 1
 " ===
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"typescript", "dart", "java"},     -- one of "all", "language", or a list of languages
+  ensure_installed = {"typescript","python", "go", "java"},     -- one of "all", "language", or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "c", "rust" },  -- list of language that will be disabled
+    disable = { "c", "rust","dart" },  -- list of language that will be disabled
   },
 }
 EOF

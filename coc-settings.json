@@ -212,7 +212,8 @@
 		},
 		"golang": {
 			"command": "gopls",
-			"rootPatterns": ["go.mod"],
+
+			"rootPatterns": ["go.mod",".git/"],
 			"filetypes": ["go"],
 			"initializationOptions": {
 				"gocodeCompletionEnabled": true,
