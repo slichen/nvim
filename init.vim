@@ -319,7 +319,7 @@ noremap <LEADER>sc :set spell!<CR>
 "autocmd BufEnter * silent! lcd %:p:h
 
 " Call figlet
-noremap tx :r !figlet 
+noremap tx :r !figlet
 
 " find and replace
 noremap \s :%s//g<left><left>
@@ -552,7 +552,8 @@ Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 "Plug 'mhinz/vim-startify'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
-
+Plug 'Pocco81/AutoSave.nvim'
+Plug 'preservim/nerdtree'
 " Vim Applications
 "Plug 'itchyny/calendar.vim'
 
@@ -758,22 +759,22 @@ let g:instant_markdown_autostart = 0
 let g:instant_markdown_autoscroll = 1
 
 
-" === 
-" === vim-markdown-preview 
-" === 
-"let g:mkdp_auto_start = 0 
-"let g:mkdp_auto_close = 1 
-"let g:mkdp_refresh_slow = 0 
-"let g:mkdp_command_for_global = 0 
-"let g:mkdp_open_to_the_world = 0 
-"let g:mkdp_open_ip = '' 
-"let g:mkdp_browser = 'w3m' 
-"let g:mkdp_echo_preview_url = 0 
-"let g:mkdp_browserfunc = '' 
-"let g:mkdp_preview_options = { 
-"    \ 'mkit': {}, 
-"    \ 'katex': {}, 
-"    \ 'uml': {}, 
+" ===
+" === vim-markdown-preview
+" ===
+"let g:mkdp_auto_start = 0
+"let g:mkdp_auto_close = 1
+"let g:mkdp_refresh_slow = 0
+"let g:mkdp_command_for_global = 0
+"let g:mkdp_open_to_the_world = 0
+"let g:mkdp_open_ip = ''
+"let g:mkdp_browser = 'w3m'
+"let g:mkdp_echo_preview_url = 0
+"let g:mkdp_browserfunc = ''
+"let g:mkdp_preview_options = {
+"    \ 'mkit': {},
+"    \ 'katex': {},
+"    \ 'uml': {},
 "    \ 'maid': {},
 "    \ 'disable_sync_scroll': 0,
 "    \ 'sync_scroll_type': 'middle',
@@ -1388,6 +1389,26 @@ require'nvim-treesitter.configs'.setup {
     enable = true,              -- false will disable the whole extension
     disable = { "c", "rust","dart" },  -- list of language that will be disabled
   },
+}
+EOF
+
+
+" lua
+lua << EOF
+require'autosave'.setup{
+    enabled = true,
+    execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
+    events = {"InsertLeave","BufLeave","FocusLost"},
+        conditions = {
+            exists = true,
+            filename_is_not = {},
+            filetype_is_not = {},
+            modifiable = true
+        },
+        write_all_buffers = false,
+        on_off_commands = true,
+        clean_command_line_interval = 0,
+        debounce_delay = 135,
 }
 EOF
 
