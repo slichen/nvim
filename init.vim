@@ -398,8 +398,16 @@ call plug#begin('$HOME/.config/nvim/plugged')
 " Plug 'theniceboy/vim-calc'
 
 " Treesitter
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/playground'
+Plug 'romgrk/nvim-treesitter-context'
+Plug 'p00f/nvim-ts-rainbow'
+Plug 'theHamsta/nvim-treesitter-pairs'
+Plug 'windwp/nvim-ts-autotag'
 
 " Pretty Dress
 Plug 'theniceboy/nvim-deus'
@@ -421,7 +429,6 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'kevinhwang91/rnvimr'
 Plug 'airblade/vim-rooter'
 Plug 'pechorin/any-jump.vim'
-
 " Taglist
 Plug 'liuchengxu/vista.vim'
 
@@ -1388,6 +1395,7 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = { "c", "rust","dart" },  -- list of language that will be disabled
+    additional_vim_regex_highlighting = false,
   },
 }
 EOF
