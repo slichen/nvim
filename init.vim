@@ -422,8 +422,13 @@ Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'RRethy/vim-illuminate'
 
 " File navigation
-"Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'scrooloose/nerdtree-project-plugin'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
+
 Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'kevinhwang91/rnvimr'
@@ -431,6 +436,9 @@ Plug 'airblade/vim-rooter'
 Plug 'pechorin/any-jump.vim'
 " Taglist
 Plug 'liuchengxu/vista.vim'
+Plug 'chentau/marks.nvim'
+
+Plug 'jsfaint/gen_tags.vim'
 
 " Debugger
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
@@ -441,8 +449,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'wellle/tmux-complete.vim'
 
 " Snippets
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'theniceboy/vim-snippets'
+Plug 'Linfee/ultisnips-zh-doc'
 
 " Undo Tree
 Plug 'mbbill/undotree'
@@ -565,7 +574,6 @@ Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'Pocco81/AutoSave.nvim'
-Plug 'preservim/nerdtree'
 " Vim Applications
 "Plug 'itchyny/calendar.vim'
 
@@ -587,8 +595,15 @@ Plug 'lambdalisue/suda.vim' " do stuff like :sudowrite
 " Plug 'roxma/nvim-yarp'
 
 Plug 'chusiang/vim-sdcv'
+Plug 'voldikss/vim-translator'
+
 Plug 'airblade/vim-rooter'
 
+Plug 'preservim/tagbar'
+
+
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'kabouzeid/nvim-lspinstall'
 
 call plug#end()
 set re=0
@@ -596,6 +611,20 @@ set re=0
 " experimental
 set lazyredraw
 "set regexpengine=1
+
+" == 
+" ==  tagbar
+" ==
+" 设置tagbar的窗口宽度
+let g:tagbar_width=30
+" 映射Tagbar的快捷键,按F8自动打开
+nmap <Leader>tt :TagbarToggle<CR>
+
+" ===
+" === translator
+" ===
+"let g:translator_default_engines='bing'
+
 
 
 " ===
