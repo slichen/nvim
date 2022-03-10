@@ -399,15 +399,16 @@ call plug#begin('$HOME/.config/nvim/plugged')
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+"Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'theHamsta/nvim-treesitter-pairs'
 Plug 'windwp/nvim-ts-autotag'
+
 
 " Pretty Dress
 Plug 'theniceboy/nvim-deus'
@@ -444,8 +445,6 @@ Plug 'jsfaint/gen_tags.vim'
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
 
 " Auto Complete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'neoclide/coc.nvim', {'branch': 'release', 'tag': 'v0.0.79'}
 Plug 'wellle/tmux-complete.vim'
 
 " Snippets
@@ -467,7 +466,10 @@ Plug 'kdheepak/lazygit.nvim'
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Tex
 " Plug 'lervag/vimtex'
@@ -501,12 +503,21 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'pantharshit00/vim-prisma'
 
 " Go
-Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
+"Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
+"Plug 'neovim/nvim-lspconfig'
+"Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'ray-x/guihua.lua' " float term, codeaction and codelens gui support
+Plug 'ray-x/go.nvim'
+
 
 " Python
 " Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
+"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 "Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
 "Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
 Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
@@ -579,7 +590,7 @@ Plug 'Pocco81/AutoSave.nvim'
 
 " Other visual enhancement
 Plug 'luochen1990/rainbow'
-Plug 'mg979/vim-xtabline'
+"Plug 'mg979/vim-xtabline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wincent/terminus'
 
@@ -598,12 +609,11 @@ Plug 'chusiang/vim-sdcv'
 Plug 'voldikss/vim-translator'
 
 Plug 'airblade/vim-rooter'
-
 Plug 'preservim/tagbar'
 
 
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'kabouzeid/nvim-lspinstall'
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
 
 call plug#end()
 set re=0
@@ -1162,6 +1172,62 @@ let g:go_doc_keywordprg_enabled = 0
 
 
 " ===
+" === go.vim
+" ===
+lua <<EOF
+
+
+require 'go'.setup({
+  test_dir = '',
+  comment_placeholder = '   ',  -- comment_placeholder your cool placeholder e.g. ﳑ       
+  lsp_cfg = true, -- false: use your own lspconfig
+  lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
+  lsp_on_attach = true, -- use on_attach from go.nvim
+	gopls_cmd = {'/home/dev/devTools/go_path/bin/gopls'},
+  filstruct = 'gopls',
+	go='go', -- go command, can be go[default] or go1.18beta1
+  goimport='gopls', -- goimport command, can be gopls[default] or goimport
+  fillstruct = 'gopls', -- can be nil (use fillstruct, slower) and gopls
+  gofmt = 'gofumpt', --gofmt cmd,
+  max_line_len = 120, -- max line length in goline format
+  tag_transform = false, -- tag_transfer  check gomodifytags for details
+  test_template = '', -- g:go_nvim_tests_template  check gotests for details
+  test_template_dir = '', -- default to nil if not set; g:go_nvim_tests_template_dir  check gotests for details
+	icons = {breakpoint = '🧘', currentpos = '🏃'},
+  verbose = false,  -- output loginf in messages
+  lsp_codelens = true, -- set to false to disable codelens, true by default
+  lsp_diag_hdlr = true, -- hook lsp diag handler
+  -- virtual text setup
+  lsp_diag_virtual_text = { space = 0, prefix = "" },
+  lsp_diag_signs = true,
+  lsp_diag_update_in_insert = false,
+  lsp_document_formatting = true,
+  -- set to true: use gopls to format
+  -- false if you want to use other formatter tool(e.g. efm, nulls)
+  gopls_remote_auto = true, -- add -remote=auto to gopls
+  dap_debug = true, -- set to false to disable dap
+  dap_debug_keymap = true, -- true: use keymap for debugger defined in go/dap.lua
+                           -- false: do not use keymap in go/dap.lua.  you must define your own.
+  dap_debug_gui = true, -- set to true to enable dap gui, highly recommand
+  dap_debug_vt = true, -- set to true to enable dap virtual text
+  build_tags = "tag1,tag2", -- set default build tags
+  textobjects = true, -- enable default text jobects through treesittter-text-objects
+  test_runner = 'go', -- richgo, go test, richgo, dlv, ginkgo
+  run_in_floaterm = false, -- set to true to run in float window.
+                           --float term recommand if you use richgo/ginkgo with terminal color
+
+})
+
+local protocol = require'vim.lsp.protocol'
+
+EOF
+
+autocmd FileType go nmap <Leader><Leader>l GoLint
+autocmd FileType go nmap <Leader>gc :lua require('go.comment').gen()
+
+
+
+" ===
 " === OmniSharp
 " ===
 "let g:OmniSharp_typeLookupInPreview = 1
@@ -1255,13 +1321,13 @@ let g:rainbow_active = 1
 " ===
 " === xtabline
 " ===
-let g:xtabline_settings = {}
-let g:xtabline_settings.enable_mappings = 0
-let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
-let g:xtabline_settings.enable_persistance = 0
-let g:xtabline_settings.last_open_first = 1
-noremap to :XTabCycleMode<CR>
-noremap \p :echo expand('%:p')<CR>
+"let g:xtabline_settings = {}
+"let g:xtabline_settings.enable_mappings = 0
+"let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
+"let g:xtabline_settings.enable_persistance = 0
+"let g:xtabline_settings.last_open_first = 1
+"noremap to :XTabCycleMode<CR>
+"noremap \p :echo expand('%:p')<CR>
 
 
 " ===
@@ -1453,8 +1519,37 @@ require'nvim-treesitter.configs'.setup {
     disable = { "c", "rust","dart" },  -- list of language that will be disabled
     additional_vim_regex_highlighting = false,
   },
+	incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+	indent = {
+    enable = true
+  },
+  incremental_selection = {
+      enable = enable,
+      keymaps = {
+        -- mappings for incremental selection (visual mappings)
+        init_selection = "gnn", -- maps in normal mode to init the node/scope selection
+        node_incremental = "grn", -- increment to the upper named parent
+        scope_incremental = "grc", -- increment to the upper scope (as defined in locals.scm)
+        node_decremental = "grm" -- decrement to the previous node
+      }
+    },
+
+
 }
 EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+
+
 
 " ================
 " === airline ====
