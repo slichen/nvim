@@ -455,6 +455,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'cohama/agit.vim'
 Plug 'kdheepak/lazygit.nvim'
 
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-airline/vim-airline'
+
 " Tex
 " Plug 'lervag/vimtex'
 
@@ -582,6 +587,8 @@ Plug 'lambdalisue/suda.vim' " do stuff like :sudowrite
 " Plug 'roxma/nvim-yarp'
 
 Plug 'chusiang/vim-sdcv'
+Plug 'airblade/vim-rooter'
+
 
 call plug#end()
 set re=0
@@ -614,6 +621,10 @@ color deus
 
 hi NonText ctermfg=gray guifg=grey10
 "hi SpecialKey ctermfg=blue guifg=grey70
+
+let g:rooter_patterns = ['.git', 'Makefile', '*.sln', 'build/env.sh']
+
+
 
 " ===================== Start of Plugin Settings =====================
 
@@ -744,14 +755,25 @@ nnoremap <leader>tl :CocList todolist<CR>
 nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
 " coc-tasks
 noremap <silent> <leader>ts :CocList tasks<CR>
+
+
 " coc-snippets
 imap <C-l> <Plug>(coc-snippets-expand)
 vmap <C-e> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<c-e>'
 let g:coc_snippet_prev = '<c-n>'
 imap <C-e> <Plug>(coc-snippets-expand-jump)
-let g:snips_author = 'David Chen'
+let g:snips_author = 'sunlc'
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 
 " ===
@@ -1385,6 +1407,11 @@ let g:typescript_ignore_browserwords = 1
 nnoremap <LEADER>gl :Agit<CR>
 let g:agit_no_default_mappings = 1
 
+" noremap <LEADER>a :Ag<CR>
+" noremap <LEADER>a :Ag!<C-u><C-r>=Escape(expand('<cword>'))<CR>
+" function! Escape(stuff)
+"    return substitute(escape(a:stuff,'\/.*$^~[]'),"\n",'\\n',"g")
+" endfunction
 
 " ===
 " === nvim-treesitter
@@ -1399,6 +1426,37 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
+" ================
+" === airline ====
+" ================
+let g:airline_theme="molokai" 
+"这个是安装字体后 必须设置此项" 
+let g:airline_powerline_fonts = 1   
+
+"打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+"设置切换Buffer快捷键"
+nnoremap <C-tab> :bn<CR>
+nnoremap <C-s-tab> :bp<CR>
+" 关闭状态显示空白符号计数
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#symbol = '!'
+" 设置consolas字体"前面已经设置过
+"set guifont=Consolas\ for\ Powerline\ FixedD:h11
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+" old vim-powerline symbols
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols.branch = '⭠'
+let g:airline_symbols.readonly = '⭤'
+
 
 
 " lua
