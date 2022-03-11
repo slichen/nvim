@@ -512,7 +512,7 @@ Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 "Plug 'theHamsta/nvim-dap-virtual-text'
 "Plug 'ray-x/guihua.lua' " float term, codeaction and codelens gui support
 "Plug 'ray-x/go.nvim'
-
+Plug 'buoto/gotests-vim'
 
 " Python
 " Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
@@ -1171,7 +1171,11 @@ let g:go_highlight_variable_assignments = 0
 let g:go_highlight_variable_declarations = 0
 let g:go_doc_keywordprg_enabled = 0
 
-
+autocmd BufRead /home/dev/devTools/go_path/src/*.go
+       \  let s:tmp = matchlist(expand('%:p'),
+            \ '/home/dev/devTools/go_path/src/\(github.com/*/[^/]\+\)')
+        \| if len(s:tmp) > 1 |  exe 'silent :GoGuruScope ' . s:tmp[1] | endif
+        \| unlet s:tmp
 
 
 " ===
