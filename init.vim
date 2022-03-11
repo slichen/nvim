@@ -415,13 +415,15 @@ Plug 'theniceboy/nvim-deus'
 "Plug 'arzg/vim-colors-xcode'
 
 " Status line
-Plug 'theniceboy/eleline.vim'
+"Plug 'theniceboy/eleline.vim'
 Plug 'ojroques/vim-scrollstatus'
 
 " General Highlighter
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'RRethy/vim-illuminate'
 
+
+"Plug 'preservim/nerdcommenter'
 " File navigation
 Plug 'preservim/nerdtree'
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -429,6 +431,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Plug 'scrooloose/nerdtree-project-plugin'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
+
+"Plug 'scrooloose/syntastic'
 
 Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
@@ -623,6 +627,42 @@ set re=0
 set lazyredraw
 "set regexpengine=1
 
+" ===
+" === syntastic
+" ===
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 1
+
+" === 
+" === NERD Commenter
+" ===
+" Create default mappings
+"let g:NERDCreateDefaultMappings = 1
+" Add spaces after comment delimiters by default
+"let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+"let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+"let g:NERDDefaultAlign = 'left'
+" Set a language to use its alternate delimiters by default
+"let g:NERDAltDelims_java = 1
+" Add your own custom formats or override the defaults
+"let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" Allow commenting and inverting empty lines (useful when commenting a region)
+"let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+"let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+"let g:NERDToggleCheckAllLines = 1
+"nnoremap <silent> <leader>c} V}:call NERDComment('x', 'toggle')<CR>
+"nnoremap <silent> <leader>c{ V{:call NERDComment('x', 'toggle')<CR>
+
+
 " == 
 " ==  tagbar
 " ==
@@ -672,7 +712,7 @@ let g:rooter_patterns = ['.git', 'Makefile', '*.sln', 'build/env.sh']
 " ===
 " === eleline.vim
 " ===
-let g:airline_powerline_fonts = 0
+
 
 
 " ==
@@ -725,6 +765,7 @@ let g:coc_global_extensions = [
 	\ 'coc-syntax',
 	\ 'coc-tailwindcss',
 	\ 'coc-tasks',
+	\ 'coc-tabnine',
 	\ 'coc-translator',
 	\ 'coc-tslint-plugin',
 	\ 'coc-tsserver',
@@ -732,6 +773,8 @@ let g:coc_global_extensions = [
 	\ 'coc-vimlsp',
 	\ 'coc-yaml',
 	\ 'coc-go',
+	\ 'coc-java',
+	\ 'coc-python',
 	\ 'coc-yank']
 inoremap <silent><expr> <TAB>
 	\ pumvisible() ? "\<C-n>" :
@@ -758,6 +801,18 @@ nnoremap <LEADER>h :call Show_documentation()<CR>
 " let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
 " let $NVIM_COC_LOG_LEVEL = 'debug'
 " let $NVIM_COC_LOG_FILE = '/Users/david/Desktop/log.txt'
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
 nmap <silent> <LEADER>- <Plug>(coc-diagnostic-prev)
@@ -1088,18 +1143,18 @@ noremap <LEADER>gi :FzfGitignore<CR>
 " ===
 " === Ultisnips
 " ===
-" let g:tex_flavor = "latex"
-" inoremap <c-n> <nop>
-" let g:UltiSnipsExpandTrigger="<c-e>"
-" let g:UltiSnipsJumpForwardTrigger="<c-e>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-" let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/Ultisnips/', $HOME.'/.config/nvim/plugged/vim-snippets/UltiSnips/']
-" silent! au BufEnter,BufRead,BufNewFile * silent! unmap <c-r>
-" " Solve extreme insert-mode lag on macOS (by disabling autotrigger)
-" augroup ultisnips_no_auto_expansion
-"     au!
-"     au VimEnter * au! UltiSnips_AutoTrigger
-" augroup END
+let g:tex_flavor = "latex"
+inoremap <c-n> <nop>
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-e>"
+let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/Ultisnips/', $HOME.'/.config/nvim/plugged/vim-snippets/UltiSnips/']
+silent! au BufEnter,BufRead,BufNewFile * silent! unmap <c-r>
+" Solve extreme insert-mode lag on macOS (by disabling autotrigger)
+augroup ultisnips_no_auto_expansion
+    au!
+    au VimEnter * au! UltiSnips_AutoTrigger
+augroup END
 
 
 
@@ -1482,19 +1537,14 @@ require'nvim-treesitter.configs'.setup {
 	indent = {
     enable = true
   },
-  incremental_selection = {
-      enable = enable,
-      keymaps = {
-        -- mappings for incremental selection (visual mappings)
-        init_selection = "gnn", -- maps in normal mode to init the node/scope selection
-        node_incremental = "grn", -- increment to the upper named parent
-        scope_incremental = "grc", -- increment to the upper scope (as defined in locals.scm)
-        node_decremental = "grm" -- decrement to the previous node
-      }
-    },
-
-
 }
+-- 开启 Folding
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+-- 默认不要折叠
+-- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
+vim.wo.foldlevel = 99
+
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
@@ -1508,6 +1558,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 let g:airline_theme="molokai" 
 "这个是安装字体后 必须设置此项" 
 let g:airline_powerline_fonts = 1   
+"let g:airline_powerline_fonts = 0
 
 "打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
 let g:airline#extensions#tabline#enabled = 1
@@ -1520,7 +1571,7 @@ nnoremap <C-s-tab> :bp<CR>
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
 " 设置consolas字体"前面已经设置过
-"set guifont=Consolas\ for\ Powerline\ FixedD:h11
+set guifont=Consolas\ for\ Powerline\ FixedD:h11
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
