@@ -409,6 +409,8 @@ Plug 'p00f/nvim-ts-rainbow'
 Plug 'theHamsta/nvim-treesitter-pairs'
 Plug 'windwp/nvim-ts-autotag'
 
+Plug 'folke/which-key.nvim'
+
 
 " Pretty Dress
 Plug 'theniceboy/nvim-deus'
@@ -521,8 +523,8 @@ Plug 'buoto/gotests-vim'
 " Python
 " Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
-"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+" Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 "Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
 "Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
 Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
@@ -605,6 +607,8 @@ Plug 'lambdalisue/suda.vim' " do stuff like :sudowrite
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc' " vim-session dep
 
+Plug 'ethanholz/nvim-lastplace'
+
 " Dependencies
 " Plug 'MarcWeber/vim-addon-mw-utils'
 " Plug 'kana/vim-textobj-user'
@@ -676,6 +680,16 @@ nmap <Leader>tt :TagbarToggle<CR>
 " ===
 "let g:translator_default_engines='bing'
 
+" ===
+" === which-key
+" ===
+lua << EOF
+  require("which-key").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
 
 
 " ===
@@ -774,7 +788,7 @@ let g:coc_global_extensions = [
 	\ 'coc-yaml',
 	\ 'coc-go',
 	\ 'coc-java',
-	\ 'coc-python',
+	\ 'coc-pyright',
 	\ 'coc-yank']
 inoremap <silent><expr> <TAB>
 	\ pumvisible() ? "\<C-n>" :
@@ -1028,6 +1042,22 @@ let g:Lf_UseCache = 0
 " let g:bookmark_center = 1
 " let g:bookmark_auto_close = 1
 " let g:bookmark_location_list = 1
+
+
+" ====
+" ==== semshi
+" ====
+" nmap <silent> <leader>rr :Semshi rename<CR>
+"nmap <silent> <Tab> :Semshi goto name next<CR>
+"nmap <silent> <S-Tab> :Semshi goto name prev<CR>
+"nmap <silent> <leader>c :Semshi goto class next<CR>
+"nmap <silent> <leader>C :Semshi goto class prev<CR>
+"nmap <silent> <leader>f :Semshi goto function next<CR>
+"nmap <silent> <leader>F :Semshi goto function prev<CR>
+"nmap <silent> <leader>gu :Semshi goto unresolved first<CR>
+"nmap <silent> <leader>gp :Semshi goto parameterUnused first<CR>
+"nmap <silent> <leader>ee :Semshi error<CR>
+"nmap <silent> <leader>ge :Semshi goto error<CR>
 
 
 " ===
@@ -1513,6 +1543,22 @@ let g:agit_no_default_mappings = 1
 " function! Escape(stuff)
 "    return substitute(escape(a:stuff,'\/.*$^~[]'),"\n",'\\n',"g")
 " endfunction
+
+" ===
+" === nvim-lastplace
+" ===
+lua <<EOF
+require("nvim-lastplace").setup(
+    {
+        -- 那些 buffer 类型不记录光标位置
+        lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
+        -- 那些文件类型不记录光标位置
+        lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
+        lastplace_open_folds = true
+    }
+)
+EOF
+
 
 " ===
 " === nvim-treesitter
